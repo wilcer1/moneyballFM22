@@ -455,4 +455,4 @@ forwards.reset_index(inplace=True)
 defenders.reset_index(inplace=True)
 goalkeepers.reset_index(inplace=True)
 
-goalkeeper_pizza(goalkeepers, 'Jamie Cumming')
+attack_pizza(forwards, 'Kylian Mbappé')
