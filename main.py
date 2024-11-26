@@ -1,6 +1,8 @@
 
 import pandas as pd
 from matplotlib import pyplot as plt
+import plotly.express as px
+import plotly.graph_objects as go
 
 from mplsoccer import PyPizza, add_image, FontManager
 
@@ -9,7 +11,7 @@ from mplsoccer import PyPizza, add_image, FontManager
 # font_bold = FontManager(("https://github.com/google/fonts/blob/main/apache/chewy/Chewy-Regular.ttf?raw=true"))
 
 
-df = pd.read_csv('moneyball3.csv', na_values=['-'])
+df = pd.read_csv('moneyball4.csv', na_values=['-'])
 df.dropna(subset=['Name'], inplace=True)
 df.fillna(0, inplace=True)
 plt.style.use('dark_background')
@@ -44,6 +46,18 @@ def create_scattergram(names, x, y, title):
     plt.plot([x.mean(), x.mean()], [y.min(), y.max()], ':')
 
     plt.savefig(f'{title.replace("/","_")}.png')
+
+def create_scattergram_interactive(names, x, y, title):
+    fig = px.scatter(x=x, y=y, text=names, title=title)
+    fig.update_traces(textposition='top center')
+    fig.add_hline(y=y.mean(), line_dash="dash", line_color="red")
+    fig.add_vline(x=x.mean(), line_dash="dash", line_color="red")
+    fig.update_layout(
+        xaxis_title=x.name,
+        yaxis_title=y.name,
+        font=dict(size=14)
+    )
+    fig.write_html(f'{title.replace("/","_")}.html')
 
 
 def defence_pizza(df, player):
@@ -255,7 +269,8 @@ mids.reset_index(inplace=True)
 forwards.reset_index(inplace=True)
 defenders.reset_index(inplace=True)
 
-create_scattergram(forwards['Name'], forwards['npxG per 90'], forwards['npxG - npG'], 'npxG/90 v npxG - npG')
+#create_scattergram(forwards['Name'], forwards['npxG per 90'], forwards['npxG - npG'], 'npxG/90 v npxG - npG')
+create_scattergram_interactive(forwards['Name'], forwards['npxG per 90'], forwards['npxG - npG'], 'npxG/90 v npxG - npG')
 # create_scattergram(forwards['Name'], forwards['npGoals/90'], forwards['Asts/90'], 'Asts/90 v npGoals/90')
 # create_scattergram(mids['Name'], mids['Ch C/90'], mids['Asts/90'], 'Asts/90 v Chances Created/90')
 # create_scattergram(mids['Name'], mids['K Ps/90'], mids['Asts/90'], 'Key Passes/90 v Assists/90')
