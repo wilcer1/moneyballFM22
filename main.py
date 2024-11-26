@@ -4,15 +4,12 @@ from matplotlib import pyplot as plt
 
 from mplsoccer import PyPizza, add_image, FontManager
 
-font_normal = FontManager(("https://github.com/google/fonts/blob/main/apache/roboto/static/"
-                           "Roboto-Regular.ttf?raw=true"))
-font_italic = FontManager(("https://github.com/google/fonts/blob/main/apache/roboto/static/"
-                           "Roboto-Italic.ttf?raw=true"))
-font_bold = FontManager(("https://github.com/google/fonts/blob/main/apache/roboto/static/"
-                         "Roboto-Medium.ttf?raw=true"))
+# font_normal = FontManager(("https://github.com/google/fonts/blob/main/apache/chewy/Chewy-Regular.ttf?raw=true"))
+# font_italic = FontManager(("https://github.com/google/fonts/blob/main/apache/chewy/Chewy-Regular.ttf?raw=true"))
+# font_bold = FontManager(("https://github.com/google/fonts/blob/main/apache/chewy/Chewy-Regular.ttf?raw=true"))
 
 
-df = pd.read_csv('moneyball.csv', na_values=['-'])
+df = pd.read_csv('moneyball3.csv', na_values=['-'])
 df.dropna(subset=['Name'], inplace=True)
 df.fillna(0, inplace=True)
 plt.style.use('dark_background')
