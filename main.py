@@ -6,9 +6,9 @@ import plotly.graph_objects as go
 
 from mplsoccer import PyPizza, add_image, FontManager
 
-# font_normal = FontManager(("https://github.com/google/fonts/blob/main/apache/chewy/Chewy-Regular.ttf?raw=true"))
-# font_italic = FontManager(("https://github.com/google/fonts/blob/main/apache/chewy/Chewy-Regular.ttf?raw=true"))
-# font_bold = FontManager(("https://github.com/google/fonts/blob/main/apache/chewy/Chewy-Regular.ttf?raw=true"))
+font_normal = FontManager(("https://github.com/google/fonts/blob/main/apache/chewy/Chewy-Regular.ttf?raw=true"))
+font_italic = FontManager(("https://github.com/google/fonts/blob/main/apache/chewy/Chewy-Regular.ttf?raw=true"))
+font_bold = FontManager(("https://github.com/google/fonts/blob/main/apache/chewy/Chewy-Regular.ttf?raw=true"))
 
 
 df = pd.read_csv('moneyball4.csv', na_values=['-'])
@@ -269,8 +269,10 @@ mids.reset_index(inplace=True)
 forwards.reset_index(inplace=True)
 defenders.reset_index(inplace=True)
 
+midfielder_pizza(mids, 'Sverre Halseth Nypan')
+
 #create_scattergram(forwards['Name'], forwards['npxG per 90'], forwards['npxG - npG'], 'npxG/90 v npxG - npG')
-create_scattergram_interactive(forwards['Name'], forwards['npxG per 90'], forwards['npxG - npG'], 'npxG/90 v npxG - npG')
+# create_scattergram_interactive(forwards['Name'], forwards['npxG per 90'], forwards['npxG - npG'], 'npxG/90 v npxG - npG')
 # create_scattergram(forwards['Name'], forwards['npGoals/90'], forwards['Asts/90'], 'Asts/90 v npGoals/90')
 # create_scattergram(mids['Name'], mids['Ch C/90'], mids['Asts/90'], 'Asts/90 v Chances Created/90')
 # create_scattergram(mids['Name'], mids['K Ps/90'], mids['Asts/90'], 'Key Passes/90 v Assists/90')
